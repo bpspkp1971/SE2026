@@ -45,15 +45,6 @@ body {
     width: auto;
 }
 
-.logo-text {
-    font-size: 1.3rem;
-    font-weight: bold;
-    background: linear-gradient(135deg, #febd26 0%, #f79039 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
 .nav-links {
     display: flex;
     list-style: none;
@@ -236,6 +227,32 @@ body {
 .activity-card p {
     color: #666;
     margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+/* Sub-items and Badges */
+.sub-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-bottom: 1.5rem;
+}
+
+.badge {
+    display: inline-block;
+    background-color: #febd26;
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.badge:hover {
+    background-color: #f79039;
+    color: white;
+    transform: scale(1.05);
 }
 
 .link {
@@ -243,6 +260,7 @@ body {
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
+    display: inline-block;
 }
 
 .link:hover {
@@ -311,10 +329,6 @@ footer {
         height: 40px;
     }
 
-    .logo-text {
-        font-size: 1.1rem;
-    }
-
     .hero-content h1 {
         font-size: 2.5rem;
     }
@@ -339,6 +353,15 @@ footer {
     .contact {
         padding: 60px 20px;
     }
+
+    .sub-items {
+        gap: 0.5rem;
+    }
+
+    .badge {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -362,10 +385,6 @@ footer {
         height: 35px;
     }
 
-    .logo-text {
-        font-size: 1rem;
-    }
-
     .hero-content h1 {
         font-size: 2rem;
     }
@@ -377,5 +396,15 @@ footer {
     .hero {
         padding: 60px 20px;
         min-height: 300px;
+    }
+
+    .sub-items {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .badge {
+        width: 100%;
+        text-align: left;
     }
 }
