@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekrutmen Petugas - Sensus Ekonomi 2026</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS MODAL OVERLAY */
+        .modal-overlay {
+            display: none; /* Sembunyikan default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Efek gelap transparan */
+            z-index: 9999; /* Pastikan di atas segalanya */
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(3px); /* Efek blur estetik */
+        }
+
+        .modal-content-wrapper {
+            position: relative;
+            background: #fff;
+            width: 90%;
+            max-width: 500px; /* Lebar maksimal agar tidak menutupi seluruh layar */
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: #ff4757;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .mySlides { display: none; }
+        .mySlides img {
+            width: 100%;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* Navigasi Modal */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 123, 255, 0.7);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .nav-btn:hover { background: #007bff; }
+        .btn-prev { left: 20px; }
+        .btn-next { right: 20px; }
+
+        .caption-text {
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        /* CSS untuk Grid Persyaratan */
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .req-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-top: 5px solid #007bff;
+            transition: transform 0.3s ease;
+        }
+
+        .req-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .req-card h4 {
+            color: #007bff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .req-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .req-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            line-height: 1.5;
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        .req-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .special-req {
+            border-top-color: #fd7e14; /* Warna oranye untuk syarat khusus */
+        }
+
+        .special-req h4 {
+            color: #fd7e14;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="logo-se2026.png" alt="Sensus Ekonomi 2026" class="logo-img">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="index.html#about">Tentang</a></li>
+                <li><a href="index.html#activities">Kegiatan</a></li>
+                <li><a href="index.html#contact">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="detail-hero">
+        <div class="hero-content">
+            <h1>Rekrutmen Petugas Sensus Ekonomi 2026</h1>
+            <p class="subtitle">Informasi lengkap proses rekrutmen petugas sensus</p>
+        </div>
+    </section>
+
+    <section class="detail-content">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Beranda</a> / <a href="index.html#activities">Kegiatan</a> / Rekrutmen Petugas
+            </div>
+
+            <!-- Overview -->
+            <div class="detail-section">
+                <h2>📋 Ringkasan Rekrutmen</h2>
+                <div class="info-box">
+                    <p>Program Rekrutmen Petugas Sensus Ekonomi 2026 adalah upaya sistematis untuk merekrut tenaga kerja berkualitas yang akan terlibat dalam pelaksanaan Sensus Ekonomi 2026. Program ini dirancang untuk memastikan tim yang kompeten dan berdedikasi dalam mengumpulkan data ekonomi nasional.</p>
+                </div>
+            </div>
+
+            <!-- Key Information -->
+            <div class="detail-grid">
+                <div class="detail-card">
+                    <div class="card-icon">👥</div>
+                    <h3>Target Rekrutmen</h3>
+                    <p>Merekrut petugas lapangan berkualitas untuk berbagai wilayah operasional</p>
+                </div>
+                <div class="detail-card">
+                    <div class="card-icon">📅</div>
+                    <h3>Jadwal Pelaksanaan</h3>
+                    <p>Jadwal lengkap pendaftaran, seleksi, dan pelatihan petugas</p>
+                </div>
+                <div class="detail-card">
+                    <div class="card-icon">📄</div>
+                    <h3>Materi Promosi</h3>
+                    <p>Flyer, poster, dan materi sosialisasi rekrutmen</p>
+                </div>
+            </div>
+
+            <!-- Detailed Information -->
+            <div class="detail-section">
+                <h2>📌 Informasi Rekrutmen</h2>
+                <div class="requirements-grid">
+                    <!-- Kolom 1: Persyaratan Umum -->
+                    <div class="req-card">
+                        <h4><i class="fas fa-user-check mr-2"></i> Persyaratan Umum</h4>
+                        <ul class="req-list">
+                            <li>Bukan Aparatur Sipil Negara/TNI/Polri</li>
+                            <li>Sehat jasmani dan rohani</li>
+                            <li>Disiplin dan berkomitmen</li>
+                            <li>Bersedia bekerja terikat kontrak</li>
+                            <li>Mampu berbahasa Indonesia dengan baik serta membaca dan menulis huruf latin</li>
+                            <li>Mampu berkomunikasi dengan baik</li>
+                            <li>Pendidikan minimal tamat SMA</li>
+                            <li>Berdomisili di wilayah pendataan</li>
+                            <li>Bersedia mengikuti pelatihan dan lulus diatas <i>passing grade</i></li>
+                            <li>Berumur <b>18-50 tahun</b> saat registrasi</li>
+                            <li>Memiliki, menguasai, dan dapat menggunakan komputer/gadget/tablet/smartphone</li>
+                            <li>Memiliki dan mampu mengendarai kendaraan bermotor</li>
+                            <li>Mampu bekerjasama dan berkoordinasi dengan anggota tim, pegawai BPS, Aparatur Kelurahan, Ketua/Pengurus SLS, dll</li>
+                            <li>Registrasi secara mandiri pada <b>SOBAT BPS</b></li>
+                            <li>Siap bertugas di seluruh wilayah Kota Pangkal Pinang</li>
+                        </ul>
+                    </div>
+
+                    <!-- Kolom 2: Persyaratan Khusus -->
+                    <div class="req-card special-req">
+                        <h4><i class="fas fa-mobile-alt mr-2"></i> Persyaratan Khusus (Gadget)</h4>
+                        <ul class="req-list">
+                            <li>OS Android minimum <b>7 (Nougat)</b></li>
+                            <li>Layar minimum 5 inch</li>
+                            <li>Processor Quadcore minimum 1,4GHz</li>
+                            <li>RAM Minimum <b>4 GB (Free 2 GB)</b></li>
+                            <li>Storage Internal 32 GB (Free 4 GB)</li>
+                            <li>Terkoneksi dengan internet (wifi atau 3G/4G/LTE)</li>
+                            <li>GPS harus aktif</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="detail-section">
+                <h2>📅 Jadwal Pelaksanaan</h2>
+                <div class="timeline">
+                    <?php
+                    $steps = [
+                        ["Registrasi", "8-13 Mei 2026", "Pendaftaran melalui <a href='https://mitra.bps.go.id' target='_blank' style='color: #007bff; text-decoration: underline;'>https://mitra.bps.go.id</a>"],
+                        ["Seleksi Administrasi", "8-14 Mei 2026", "Proses verifikasi berkas dan dokumen calon mitra"],
+                        ["Pengumuman Seleksi Administrasi", "14 Mei 2026", "Hasil seleksi tahap awal untuk lanjut ke tahap tes"],
+                        ["Tes Kompetensi dan Wawancara", "15-20 Mei 2026", "Uji kemampuan teknis dan sesi tanya jawab"],
+                        ["Submit Pakta Integritas Mitra Tambahan", "22-24 Mei 2026", "Penyerahan dokumen komitmen sebagai mitra statistik"],
+                        ["Pengumuman Akhir Hasil Seleksi", "25 Mei 2026", "Pengumuman final mitra statistik BPS 2026 tambahan"]
+                    ];
+                    foreach ($steps as $index => $step): ?>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"><?= $index + 1 ?></div>
+                        <div class="timeline-content">
+                            <h4><?= $step[0] ?></h4>
+                            <span style="color: #007bff; font-weight: bold; font-size: 0.9em;"><?= $step[1] ?></span>
+                            <p><?= $step[2] ?></p>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+
+            <!-- Documents and Resources -->
+            <div class="detail-section">
+                <h2>📚 Dokumen dan Sumber Daya</h2>
+                <div class="activity-types">
+                    <div class="type-card">
+                        <h4>📄 Flyer Rekrutmen</h4>
+                        <p>Desain visual yang menarik untuk promosi program rekrutmen petugas Sensus Ekonomi 2026</p>
+                        <div style="margin-top: 15px;">
+                            <!-- Disinkronkan menjadi openModal() sesuai nama fungsi di <script> -->
+                            <button onclick="openModal()" class="btn btn-secondary" style="display: inline-block; padding: 8px 16px; font-size: 0.9em; cursor: pointer; border: none; border-radius: 4px;">
+                                Lihat Flyer
+                            </button>
+                        </div>
+                    </div>
+                    <div class="type-card highlight-card">
+                        <h4>📋 Formulir Pendaftaran</h4>
+                        <p>Formulir lengkap yang harus diisi oleh calon petugas untuk proses registrasi</p>
+                        <div style="margin-top: 15px;">
+                            <a href="https://s.bps.go.id/1971_rekrutmenmitraSE2026" target="_blank" class="btn btn-secondary" style="display: inline-block; padding: 8px 16px; font-size: 0.9em; cursor: pointer; border: none; border-radius: 4px;">
+                                Isi Formulir Sekarang
+                            </a>
+                        </div>
+                    </div>
+                    <div class="type-card"><h4>📖 Panduan Seleksi</h4><p>Panduan komprehensif tentang proses seleksi calon petugas</p></div>
+                    <div class="type-card"><h4>🎓 Materi Pelatihan</h4><p>Materi pembelajaran untuk persiapan petugas</p></div>
+                    <div class="type-card"><h4>📸 Dokumentasi</h4><p>Foto dan video dokumentasi kegiatan rekrutmen</p></div>
+                    <div class="type-card"><h4>📊 Laporan Rekrutmen</h4><p>Laporan terperinci tentang hasil dan statistik kegiatan</p></div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="cta-section">
+                <h2>Tertarik Bergabung?</h2>
+                <p>Hubungi kami untuk informasi lebih lanjut tentang program rekrutmen petugas Sensus Ekonomi 2026</p>
+                <a href="index.html#contact" class="btn btn-primary">Hubungi Kami</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL OVERLAY -->
+    <div id="flyerModal" class="modal-overlay" onclick="closeModalOutside(event)">
+        <div class="modal-content-wrapper">
+            <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+            
+            <div class="modal-body">
+                <?php
+                $dir = "dokumentasi/rekrutmen/";
+                // glob mencari file gambar di folder terkait
+                $images = glob($dir . "*.{jpg,jpeg,png,webp}", GLOB_BRACE);
+
+                if (count($images) > 0):
+                    foreach ($images as $index => $imagePath):
+                        $fileName = pathinfo($imagePath, PATHINFO_FILENAME);
+                ?>
+                    <div class="mySlides">
+                        <img src="<?= $imagePath ?>" alt="Flyer">
+                        <div class="caption-text"><?= str_replace(['_', '-'], ' ', $fileName) ?></div>
+                    </div>
+                <?php 
+                    endforeach;
+                else:
+                    echo "<p style='text-align:center; padding: 20px;'>Flyer belum tersedia.</p>";
+                endif; 
+                ?>
+
+                <?php if (count($images) > 1): ?>
+                    <button class="nav-btn btn-prev" onclick="changeSlide(-1)">&#10094;</button>
+                    <button class="nav-btn btn-next" onclick="changeSlide(1)">&#10095;</button>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Sensus Ekonomi 2026. Semua hak dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        let slideIndex = 1;
+
+        function openModal() {
+            const modal = document.getElementById("flyerModal");
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden"; // Kunci scroll background
+            showSlides(slideIndex);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("flyerModal");
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; // Aktifkan scroll kembali
+        }
+
+        function closeModalOutside(e) {
+            if (e.target.id === "flyerModal") {
+                closeModal();
+            }
+        }
+
+        function changeSlide(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("mySlides");
+            if (slides.length === 0) return;
+            
+            if (n > slides.length) { slideIndex = 1; }
+            if (n < 1) { slideIndex = slides.length; }
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
+        }
+
+        // Support Keyboard Esc untuk menutup modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
