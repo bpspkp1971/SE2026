@@ -5,6 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KKD - Sensus Ekonomi 2026</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* --- NAVIGATION & BURGER MENU CSS --- */
+        .navbar {
+            background: #fff;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            flex-direction: row !important; 
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: #007bff;
+        }
+
+        /* Burger Icon Style */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .burger-menu span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #007bff;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        .burger-menu.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .burger-menu.active span:nth-child(2) { opacity: 0; }
+        .burger-menu.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+        /* --- DROPDOWN DOKUMENTASI CSS --- */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .btn-dropdown {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-dropdown:hover {
+            background-color: #0056b3;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 100%;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: #007bff;
+        }
+
+        .show {
+            display: block;
+        }
+
+        /* RESPONSIVE MOBILE */
+        @media (max-width: 768px) {
+            .burger-menu { display: flex; }
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                width: 100%;
+                background: #ffffff;
+                flex-direction: column;
+                gap: 0;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                display: none;
+            }
+            .nav-links.active { display: flex; }
+            .nav-links li { width: 100%; text-align: center; }
+            .nav-links li a { display: block; padding: 15px; border-bottom: 1px solid #eee; }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -12,7 +165,14 @@
             <div class="logo">
                 <img src="logo-se2026.png" alt="Sensus Ekonomi 2026" class="logo-img">
             </div>
-            <ul class="nav-links">
+
+            <button class="burger-menu" id="burgerToggle" aria-label="Buka Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Beranda</a></li>
                 <li><a href="index.html#about">Tentang</a></li>
                 <li><a href="index.html#activities">Kegiatan</a></li>
@@ -34,7 +194,6 @@
                 <a href="index.html">Beranda</a> / <a href="index.html#activities">Kegiatan</a> / KKD
             </div>
 
-            <!-- Overview -->
             <div class="detail-section">
                 <h2>📋 Ringkasan Program KKD</h2>
                 <div class="info-box">
@@ -42,7 +201,6 @@
                 </div>
             </div>
 
-            <!-- Three Pillars -->
             <div class="detail-grid">
                 <div class="detail-card">
                     <div class="card-icon">📢</div>
@@ -61,7 +219,6 @@
                 </div>
             </div>
 
-            <!-- Detailed Information -->
             <div class="detail-section">
                 <h2>🎯 Pilar dan Fokus Utama</h2>
                 <div class="activity-types">
@@ -83,7 +240,6 @@
                 </div>
             </div>
 
-            <!-- Target Stakeholders -->
             <div class="detail-section">
                 <h2>👥 Target Stakeholder</h2>
                 <div class="info-box">
@@ -99,7 +255,6 @@
                 </div>
             </div>
 
-            <!-- Timeline -->
             <div class="detail-section">
                 <h2>📅 Jadwal Kegiatan KKD</h2>
                 <div class="timeline">
@@ -148,7 +303,6 @@
                 </div>
             </div>
 
-            <!-- Key Messages -->
             <div class="detail-section">
                 <h2>💡 Pesan-Pesan Kunci</h2>
                 <div class="impact-box">
@@ -171,7 +325,6 @@
                 </div>
             </div>
 
-            <!-- Documents and Resources -->
             <div class="detail-section">
                 <h2>📚 Dokumen dan Sumber Daya</h2>
                 <div class="activity-types">
@@ -194,6 +347,20 @@
                     <div class="type-card">
                         <h4>📸 Dokumentasi Kegiatan</h4>
                         <p>Foto dan video dokumentasi dari berbagai kegiatan KKD dan engagement stakeholder</p>
+                        
+                        <!-- DROP DOWN MENU DOKUMENTASI -->
+                        <div class="dropdown">
+                            <button onclick="toggleDocMenu()" class="btn-dropdown">
+                                Lihat Dokumentasi <span>▼</span>
+                            </button>
+                            <div id="docDropdown" class="dropdown-content">
+                                <a href="https://drive.google.com/drive/folders/1e-9ltvPO6nhUbDdAXVORGgdeM3GkRV2H?usp=drive_link" target="_blank">Kecamatan</a>
+                                <a href="https://drive.google.com/drive/folders/1BF2lQsaufF6RVv4oA8xSP9HVVLdQQ8vz?usp=drive_link" target="_blank">Kelurahan</a>
+                                <a href="https://drive.google.com/drive/folders/1aNGjYink3tAKrHfGr6Gxt8Z6ufgdtv4Y?usp=drive_link" target="_blank">Perusahaan</a>
+                                <a href="https://drive.google.com/drive/folders/1nF16P7DPuzl9jjFEqC_CG_ABIFpUYi1D?usp=drive_link" target="_blank">Sosialisasi SE2026</a>
+                                <a href="https://drive.google.com/drive/folders/13_IiYN4lD4HAzgXh9NtIM-JhMLTrk4B3?usp=drive_link" target="_blank">Video Dukungan</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="type-card">
                         <h4>📊 Laporan Implementasi</h4>
@@ -202,7 +369,6 @@
                 </div>
             </div>
 
-            <!-- Expected Impact -->
             <div class="detail-section">
                 <h2>🎯 Hasil dan Dampak yang Diharapkan</h2>
                 <div class="info-box">
@@ -217,7 +383,6 @@
                 </div>
             </div>
 
-            <!-- Contact Information -->
             <div class="cta-section">
                 <h2>Ingin Berkolaborasi?</h2>
                 <p>Hubungi kami untuk mengetahui lebih lanjut tentang peluang kerjasama dan keterlibatan dalam program KKD Sensus Ekonomi 2026</p>
@@ -231,5 +396,40 @@
             <p>&copy; 2026 Sensus Ekonomi 2026. Semua hak dilindungi.</p>
         </div>
     </footer>
+
+    <script>
+        const burgerToggle = document.getElementById('burgerToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        burgerToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            burgerToggle.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                burgerToggle.classList.remove('active');
+            });
+        });
+
+        /* SCRIPT UNTUK DROPDOWN DOKUMENTASI */
+        function toggleDocMenu() {
+            document.getElementById("docDropdown").classList.toggle("show");
+        }
+
+        // Tutup dropdown jika user klik di luar area menu
+        window.onclick = function(event) {
+            if (!event.target.matches('.btn-dropdown')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>
